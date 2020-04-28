@@ -1,0 +1,8 @@
+*.class
+*.log
+.idea
+out
+project
+project
+target
+src/META-INF
