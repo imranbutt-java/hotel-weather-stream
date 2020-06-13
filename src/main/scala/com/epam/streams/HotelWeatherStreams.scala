@@ -65,8 +65,8 @@ object HotelWeatherStreams {
       .when(condtionFor4,lit(4))
       .when(conditionFor3, lit(3))
 
-    //Streaming using windowing
-    //use cache
+    //Todo: Streaming using windowing
+    //Todo: use cache
     val result = weatherDF.selectExpr("wthr_date as date", "avg_tmpr_c as temprature", "geo_hash")
         .join(geoHotelDF, joinCondition, "left")
         .withColumn("count", countCondition)
@@ -74,7 +74,7 @@ object HotelWeatherStreams {
         .where(col("hotel_name").isNotNull)
 
 
-    // optimization: may use csv or schema
+    //Todo: optimization: may use csv or schema
     result.select(to_json(struct(col("date"), col("temprature"),
       col("hotel_name"),
       col("count"))).cast("String").as("value"))
